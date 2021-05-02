@@ -1,7 +1,7 @@
 {
   "name": "cairn-ros",
   "title": "Cairn - Rasp of Sand",
-  "description": "Cairn - Rasp of Sand for FoundryVTT", "version": "0.9.90",
+  "description": "Cairn - Rasp of Sand for FoundryVTT", "version": "0.9.91",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.7.9",
   "templateVersion": 2,
