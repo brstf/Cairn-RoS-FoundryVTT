@@ -32,6 +32,19 @@
                     data-dtype="Number"/>
                 </div>
             </div>
+            <div class="flexrow">
+                <label
+                    for="data.level"
+                class="resource-label">level</label>
+                <div class="resource-content flexrow flex-center flex-between">
+                    <input
+                    type="text"
+                    name="data.level"
+                    value="{{data.level}}"
+                    data-dtype="Number"
+                    />
+                </div>
+            </div>
             {{#unless data.deprived}}
             <span>
                 <button style="
@@ -107,17 +120,30 @@
                     </div>
                     <div class="flexcol">
                         <div class="stat">
-                            <img src="systems/cairn/tokens/png/extra/gold%20piece.png" />
+                            <img src="systems/cairn/tokens/png/extra/sand%20pile.png" />
                         </div>
                         <div class="flexrow">
                             <label
                                 for="data.gold"
-                            class="resource-label">gold</label>
+                            class="resource-label">sand</label>
                             <div class="resource-content flexrow flex-center flex-between">
                                 <input
                                 type="text"
                                 name="data.gold"
                                 value="{{data.gold}}"
+                                data-dtype="Number"
+                                />
+                            </div>
+                        </div>
+                        <div class="flexrow">
+                            <label
+                                for="data.xp"
+                            class="resource-label">xp</label>
+                            <div class="resource-content flexrow flex-center flex-between">
+                                <input
+                                type="text"
+                                name="data.xp"
+                                value="{{data.xp}}"
                                 data-dtype="Number"
                                 />
                             </div>
