@@ -16,9 +16,9 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet)
-  Actors.registerSheet('cairn', CairnActorSheet, { makeDefault: true })
+  Actors.registerSheet('cairn-ros', CairnActorSheet, { makeDefault: true })
   Items.unregisterSheet('core', ItemSheet)
-  Items.registerSheet('cairn', CairnItemSheet, { makeDefault: true })
+  Items.registerSheet('cairn-ros', CairnItemSheet, { makeDefault: true })
 
   // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function () {
