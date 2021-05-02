@@ -1,3 +1,7 @@
+# Cairn for Rasp of Sand
+
+My fork of [Cairn for FoundryVTT](https://github.com/yochaigal/Cairn-FoundryVTT) with modifications for running Rasp of Sand, primarily renaming Gold to Sand, and adding XP to the character sheet.
+
 # Cairn for FoundryVTT!
 
 Implements basic character and item sheets for playing [Cairn](https://cairnrpg.com) by [Yochai Gal](https://newschoolrevolution.com) in Foundry VTT. Cairn is a mashup of Knave and Into The Odd, meant for Wood Fantasy settings such as Necrotic Gnome's [Dolmenwood](https://necroticgnome.com/collections/dolmenwood).
