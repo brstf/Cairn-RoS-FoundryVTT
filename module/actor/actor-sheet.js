@@ -6,7 +6,7 @@ export class CairnActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions () {
     return mergeObject(super.defaultOptions, {
-      classes: ['cairn-ros',
+      classes: ['cairn',
         'sheet',
         'actor'],
       template: 'systems/cairn-ros/templates/actor/actor-sheet.html',
