@@ -16,6 +16,8 @@ export class CairnActor extends Actor {
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
     if (actorData.type === 'character') this._prepareCharacterData(actorData)
+    if (actorData.type === 'npc') this._prepareNpcData(actorData)
+    if (actorData.type === 'container') this._prepareContainerData(actorData)
   }
 
   /**
@@ -27,19 +29,34 @@ export class CairnActor extends Actor {
     data.armor = actorData
       .items
       .filter(item => item.type == 'armor' || item.type == 'item')
-      .map(item => item.data.armor * item.data.equipped)
+      .map(item => item.data.data.armor * item.data.data.equipped)
       .reduce((a, b) => a + b, 0)
 
-    data.slotsUsed = actorData
-      .items
-      .map(item => item.data.slots * 1)
-      .reduce((memo, slots) => memo + slots, 0)
+    data.slotsUsed = calcSlotsUsed(actorData)
 
     data.encumbered = data.slotsUsed >= 10
 
     if (data.encumbered) {
       data.hp.value = 0
     }
+  }
+
+  _prepareNpcData (actorData) {
+    const data = actorData.data
+
+    let itemArmor = actorData
+      .items
+      .filter(item => item.type == 'armor' || item.type == 'item')
+      .map(item => item.data.data.armor * item.data.data.equipped)
+      .reduce((a, b) => a + b, 0)
+
+    data.armor = Math.max(itemArmor, data.armor)
+  }
+
+  _prepareContainerData (actorData) {
+    const data = actorData.data
+
+    data.slotsUsed = calcSlotsUsed(actorData)
   }
 
   /** @override */
@@ -62,3 +79,11 @@ export class CairnActor extends Actor {
     }
   }
 }
+
+function calcSlotsUsed(actorData) {
+  return actorData
+    .items
+    .map(item => item.data.data.slots * (item.data.data.quantity || 1))
+    .reduce((memo, slots) => memo + slots, 0)
+}
+

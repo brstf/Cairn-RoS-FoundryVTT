@@ -1,34 +1,50 @@
 {
   "Actor": {
     "types": [
-      "character"
+      "character", "npc", "container"
     ],
-    "character": {
-      "templates": [
-        "base"
-      ],
-      "background": "",
-      "biography": "",
-      "hp": {
-        "value": 10,
-        "max": 10
-      },
-      "deprived": false,
-      "gold": 0,
-      "abilities": {
-        "STR": {
+    "templates": {
+      "actorBase": {
+        "hp": {
           "value": 10,
           "max": 10
         },
-        "DEX": {
-          "value": 10,
-          "max": 10
-        },
-        "WIL": {
-          "value": 10,
-          "max": 10
+        "abilities": {
+          "STR": {
+            "value": 10,
+            "max": 10
+          },
+          "DEX": {
+            "value": 10,
+            "max": 10
+          },
+          "WIL": {
+            "value": 10,
+            "max": 10
+          }
         }
       }
+    },
+    "character": {
+      "templates": [ "base", "actorBase" ],
+      "background": "",
+      "biography": "",
+      "deprived": false,
+      "gold": 0,
+      "level": 1,
+      "xp": 0 
+    },
+
+    "npc": {
+      "templates": [ "base", "actorBase" ],
+      "description": "",
+      "armor": 0
+    },
+
+    "container": {
+      "templates": [ "base" ],
+      "description": "",
+      "slots": 0
     }
   },
   "Item": {

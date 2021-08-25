@@ -1,9 +1,9 @@
 {
   "name": "cairn-ros",
   "title": "Cairn - Rasp of Sand",
-  "description": "Cairn - Rasp of Sand for FoundryVTT", "version": "0.9.91",
-  "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.7.9",
+  "description": "Cairn - Rasp of Sand for FoundryVTT", "version": "0.10.4",
+  "minimumCoreVersion": "0.8.9",
+  "compatibleCoreVersion": "0.8.9",
   "templateVersion": 2,
   "author": "yochaigal",
   "esmodules": [
@@ -56,7 +56,14 @@
     "system": "cairn-ros"
     },
     {
-    "name": "spellbooks",
+    "name": "monsters",
+    "label": "Monsters",
+    "path": "packs/monsters.db",
+    "entity": "Actor",
+    "system": "cairn"
+    },
+    {
+	"name": "spellbooks",
     "label": "Spellbooks",
     "path": "packs/spellbooks.db",
     "entity": "Item",

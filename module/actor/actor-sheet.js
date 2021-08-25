@@ -22,6 +22,11 @@ export class CairnActorSheet extends ActorSheet {
     })
   }
 
+  get template () {
+    const path = 'systems/cairn-ros/templates/actor'
+    return `${path}/${this.actor.data.type}-sheet.html`
+  }
+
   /* -------------------------------------------- */
   /** @override */
   // getData () {
@@ -75,12 +80,19 @@ export class CairnActorSheet extends ActorSheet {
           await this.actor.update({ 'data.hp.value': this.actor.data.data.hp.max })
         }
       })
+
     html.find('.restore')
       .click(async ev => {
-        await this.actor.update({ 'data.abilities.STR.value': this.actor.data.data.abilities.STR.max })
-        await this.actor.update({ 'data.abilities.DEX.value': this.actor.data.data.abilities.DEX.max })
-        await this.actor.update({ 'data.abilities.WIL.value': this.actor.data.data.abilities.WIL.max })
+        if (!this.actor.data.data.deprived) {
+          await this.actor.update({ 'data.abilities.STR.value': this.actor.data.data.abilities.STR.max })
+          await this.actor.update({ 'data.abilities.DEX.value': this.actor.data.data.abilities.DEX.max })
+          await this.actor.update({ 'data.abilities.WIL.value': this.actor.data.data.abilities.WIL.max })
+        }
       })
+
+    // Items whose descriptions can be toggled
+      html.find('span.item-name')
+        .click(this._onItemDescriptionToggle.bind(this))
   }
 
   /* -------------------------------------------- */
@@ -122,13 +134,23 @@ export class CairnActorSheet extends ActorSheet {
     if (dataset.roll) {
       const roll = new Roll(dataset.roll, this.actor.data.data)
       const label = dataset.label ? `Rolling ${dataset.label}` : ''
-      roll.roll().toMessage({
+      roll.roll({async: false}).toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: label
       })
     }
   }
 
+  _onItemDescriptionToggle (e) {
+    let id = `item-description-${e.currentTarget.id.match(/item\-(.*)/)[1]}`
+    let description = document.getElementById(id)
+    if (description.style.display === "none") {
+      description.style.display = "block";
+    } else {
+      description.style.display = "none";
+    }
+  }
+    
   _onRollAbility (event) {
     event.preventDefault()
     const element = event.currentTarget
@@ -136,11 +158,11 @@ export class CairnActorSheet extends ActorSheet {
     if (dataset.roll) {
       const roll = new Roll(dataset.roll, this.actor.data.data)
       const label = dataset.label ? `Rolling ${dataset.label}` : ''
-      const rolled = roll.roll()
+      const rolled = roll.roll({async: false})
 
       const formula = rolled._formula
       const rolled_number = rolled.terms[0].results[0].result
-      if (rolled.results[0] === 0) {
+      if (rolled.result === "0") {
         rolled.toMessage({
           speaker: ChatMessage.getSpeaker({ actor: this.actor }),
           flavor: label,

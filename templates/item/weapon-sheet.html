@@ -1,5 +1,5 @@
 <form
-    class="{{cssClass}}"
+    class="{{cssClass}} item-sheet weapon-sheet"
     autocomplete="off">
     <header class="sheet-header">
         <img
@@ -13,15 +13,16 @@
                 type="text"
                 value="{{item.name}}"
                 placeholder="Name"/></h1>
-            <div class="grid grid-3col">
+            <div class="grid grid-3col" style="margin-bottom: 0px">
                 <div class="resource flex-group-center">
-                    <label class="resource-label" style="text-align: center">Heavy</label>
+                    <label class="resource-label" style="text-align: center">Bulky</label>
                     <input
                         class="checkbox-block"
                         type="checkbox"
                         {{checked
-                        data.bulky}}
+                        data.data.bulky}}
                         name="data.bulky"
+                        style="display: inline"
                         value="{{data.data.bulky}}"
                         data-dtype="Boolean"/>
                 </div>
@@ -31,8 +32,9 @@
                         class="checkbox-block"
                         type="checkbox"
                         {{checked
-                        data.equipped}}
+                        data.data.equipped}}
                         name="data.equipped"
+                        style="display: inline"
                         value="{{data.data.equipped}}"
                         data-dtype="Boolean"/>
                 </div>
@@ -42,8 +44,9 @@
                         class="checkbox-block"
                         type="checkbox"
                         {{checked
-                        data.blast}}
+                        data.data.blast}}
                         name="data.blast"
+                        style="display: inline"
                         value="{{data.data.blast}}"
                         data-dtype="Boolean"/>
                 </div>
@@ -58,7 +61,7 @@
             <input
                 type="text"
                 name="data.quantity"
-                value="{{data.quantity}}"
+                value="{{data.data.quantity}}"
                 data-dtype="Number"/>
         </div>
         <div class="resource flex-group-center">
@@ -66,7 +69,7 @@
             <input
                 type="text"
                 name="data.slots"
-                value="{{data.slots}}"
+                value="{{data.data.slots}}"
                 placeholder=0
                 data-dtype="Number"/>
         </div>
@@ -75,9 +78,19 @@
             <input
                 type="text"
                 name="data.damageFormula"
-                value="{{data.damageFormula}}"/>
+                value="{{data.data.damageFormula}}"/>
         </div>
     </div>
+
+    <div class="resource flex-group-center">
+        <label class="resource-label" style="text-align: center">Critical Damage</label>
+        <input
+            type="text"
+            name="data.criticalDamage"
+            value="{{data.data.criticalDamage}}"
+            data-dtype="String"/>
+    </div>
+
     <div class="sheet-tabs-container">
         <nav
             class="sheet-tabs tabs"
@@ -88,5 +101,5 @@
         </nav>
     </div>
 
-    {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
 </form>
